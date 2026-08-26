@@ -57,4 +57,9 @@ fun main() {
     println(String.format("%-23s: S/ %8.2f", "Subtotal", subtotal))
     println(String.format("%-23s: S/ %8.2f", "IGV (18%)", igv))
     println(String.format("%-23s: S/ %8.2f", "TOTAL A PAGAR", total))
+
+    val masCaro = carrito.maxByOrNull { it.precio }
+    if (masCaro != null) {
+        println(String.format("Producto mas caro: %s (S/%.2f)", masCaro.nombre, masCaro.precio))
+    }
 }
