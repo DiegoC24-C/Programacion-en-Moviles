@@ -23,6 +23,12 @@ interface Calculable {
 }
 
 
+interface EstrategiaDescuento {
+
+    fun calcularDescuento(subtotal: Double): Double
+}
+
+
 abstract class ProductoBase(
     protected val nombre: String,
     protected val precioBase: Double
@@ -122,22 +128,41 @@ class ItemCarrito(
 }
 
 
+class DescuentoPorMonto : EstrategiaDescuento {
+
+    override fun calcularDescuento(subtotal: Double): Double {
+
+        return when {
+            subtotal > 5000 -> subtotal * 0.10
+            subtotal > 3000 -> subtotal * 0.05
+            else -> 0.0
+        }
+    }
+
+    fun obtenerPorcentaje(subtotal: Double): Double {
+
+        return when {
+            subtotal > 5000 -> 10.0
+            subtotal > 3000 -> 5.0
+            else -> 0.0
+        }
+    }
+}
+
+
 class CarritoCompras(
-    private val cliente: Cliente
+    private val cliente: Cliente,
+    private val estrategiaDescuento: EstrategiaDescuento
 ) {
 
     private val items: MutableList<ItemCarrito> = mutableListOf()
 
 
-    // Sobrecarga 1:
-    // Agrega un producto con cantidad 1.
     fun agregarProducto(producto: ProductoBase) {
         agregarProducto(producto, 1)
     }
 
 
-    // Sobrecarga 2:
-    // Agrega un producto indicando la cantidad.
     fun agregarProducto(
         producto: ProductoBase,
         cantidad: Int
@@ -160,9 +185,11 @@ class CarritoCompras(
         return items.toList()
     }
 
+
     fun obtenerCliente(): Cliente {
         return cliente
     }
+
 
     fun calcularSubtotal(): Double {
 
@@ -171,11 +198,20 @@ class CarritoCompras(
         }
     }
 
+
     fun calcularCantidadTotal(): Int {
 
         return items.sumOf {
             it.obtenerCantidad()
         }
+    }
+
+
+    fun calcularDescuento(): Double {
+
+        return estrategiaDescuento.calcularDescuento(
+            calcularSubtotal()
+        )
     }
 }
 
@@ -186,6 +222,7 @@ fun main() {
         "Diego Magallanes",
         "76543210"
     )
+
 
     val laptop = ProductoFisico(
         "Laptop Lenovo",
@@ -202,16 +239,18 @@ fun main() {
         800.00
     )
 
-    val carrito = CarritoCompras(cliente)
+
+    val estrategiaDescuento = DescuentoPorMonto()
 
 
-    // Usamos la sobrecarga con cantidad.
+    val carrito = CarritoCompras(
+        cliente,
+        estrategiaDescuento
+    )
+
+
     carrito.agregarProducto(laptop, 2)
-
-    // Usamos la sobrecarga sin cantidad.
-    // Automáticamente agrega 1 unidad.
     carrito.agregarProducto(monitor)
-
     carrito.agregarProducto(curso, 3)
 
 
@@ -227,17 +266,33 @@ fun main() {
         println(
             "${item.obtenerProducto().obtenerNombre()} " +
                     "x ${item.obtenerCantidad()} = " +
-                    "S/ ${item.calcularImporte()}"
+                    "S/ ${
+                        String.format(
+                            "%.2f",
+                            item.calcularImporte()
+                        )
+                    }"
         )
     }
 
+
     println()
     println("Cantidad total: ${carrito.calcularCantidadTotal()}")
+
     println(
         "Subtotal: S/ ${
             String.format(
                 "%.2f",
                 carrito.calcularSubtotal()
+            )
+        }"
+    )
+
+    println(
+        "Descuento: S/ ${
+            String.format(
+                "%.2f",
+                carrito.calcularDescuento()
             )
         }"
     )
