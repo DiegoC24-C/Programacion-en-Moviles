@@ -63,6 +63,33 @@ class ItemCarrito(
     override fun calcularImporte(): Double = producto.calcularImporte() * cantidad
 }
 
+class CarritoCompras(
+    val cliente: Cliente,
+    private val estrategiaDescuento: EstrategiaDescuento = DescuentoMontoTecsup()
+) {
+    private val items = mutableListOf<ItemCarrito>()
+
+    fun agregarProducto(producto: ProductoBase) {
+        agregarProducto(producto, 1)
+    }
+
+    fun agregarProducto(producto: ProductoBase, cantidad: Int) {
+        require(cantidad > 0) { "La cantidad agregada debe ser mayor a 0" }
+        val itemExistente = items.find { it.producto.nombre == producto.nombre }
+        if (itemExistente != null) {
+            itemExistente.actualizarCantidad(itemExistente.cantidad + cantidad)
+        } else {
+            items.add(ItemCarrito(producto, cantidad))
+        }
+        println("Producto agregado: ${producto.nombre}")
+    }
+
+    fun obtenerCantidadProductos(): Int = items.size
+    fun calcularSubtotal(): Double = items.sumOf { it.calcularImporte() }
+    fun calcularIGV(): Double = calcularSubtotal() * 0.18
+    fun calcularTotal(): Double = calcularSubtotal() + calcularIGV()
+}
+
 fun main() {
     println("==")
     println("CARRITO DE COMPRAS - POO")
