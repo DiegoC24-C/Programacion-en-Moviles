@@ -27,6 +27,14 @@ fun mostrarDetalle(productos: List<Producto>) {
     }
 }
 
+fun calcularDescuento(total: Double): Double {
+    return when {
+        total > 5000 -> total * 0.10
+        total > 3000 -> total * 0.05
+        else -> 0.0
+    }
+}
+
 fun main() {
     println("==")
     println("CARRITO DE COMPRAS")
@@ -62,4 +70,15 @@ fun main() {
     if (masCaro != null) {
         println(String.format("Producto mas caro: %s (S/%.2f)", masCaro.nombre, masCaro.precio))
     }
+
+    val descuento = calcularDescuento(total)
+    val totalConDescuento = total - descuento
+
+    if (descuento > 0) {
+        val porcentaje = if (total > 5000) "10%" else "5%"
+        println("Descuento aplicado: $porcentaje por compra mayor a S/ 3000")
+        println(String.format("TOTAL CON DESCUENTO : S/%.2f", totalConDescuento))
+    }
+
+    println("\nGracias por su compra, $nombreCliente!")
 }
