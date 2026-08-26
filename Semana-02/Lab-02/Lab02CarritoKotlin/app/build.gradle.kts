@@ -33,9 +33,6 @@ android {
     buildFeatures {
         compose = true
     }
-    sourceSets {
-        create("unitTest")
-    }
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package com.magallanes.lab02carritokotlin
+package com.magallanes.lab02carritokotlin.sinIA
 
 data class Producto(
     val nombre: String,
