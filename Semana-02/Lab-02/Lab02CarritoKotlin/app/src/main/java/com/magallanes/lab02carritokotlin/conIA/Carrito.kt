@@ -122,16 +122,22 @@ class ItemCarrito(
 }
 
 
-// ============================================================
-// COMMIT 5 - CARRITO DE COMPRAS
-// ============================================================
-
 class CarritoCompras(
     private val cliente: Cliente
 ) {
 
     private val items: MutableList<ItemCarrito> = mutableListOf()
 
+
+    // Sobrecarga 1:
+    // Agrega un producto con cantidad 1.
+    fun agregarProducto(producto: ProductoBase) {
+        agregarProducto(producto, 1)
+    }
+
+
+    // Sobrecarga 2:
+    // Agrega un producto indicando la cantidad.
     fun agregarProducto(
         producto: ProductoBase,
         cantidad: Int
@@ -148,6 +154,7 @@ class CarritoCompras(
 
         items.add(nuevoItem)
     }
+
 
     fun obtenerItems(): List<ItemCarrito> {
         return items.toList()
@@ -185,6 +192,11 @@ fun main() {
         2500.00
     )
 
+    val monitor = ProductoFisico(
+        "Monitor Samsung",
+        1200.00
+    )
+
     val curso = ProductoDigital(
         "Curso Kotlin",
         800.00
@@ -192,8 +204,16 @@ fun main() {
 
     val carrito = CarritoCompras(cliente)
 
+
+    // Usamos la sobrecarga con cantidad.
     carrito.agregarProducto(laptop, 2)
+
+    // Usamos la sobrecarga sin cantidad.
+    // Automáticamente agrega 1 unidad.
+    carrito.agregarProducto(monitor)
+
     carrito.agregarProducto(curso, 3)
+
 
     println("CARRITO DE COMPRAS TIENDA TECSUP")
     println("Cliente: ${carrito.obtenerCliente().obtenerNombre()}")
@@ -213,5 +233,12 @@ fun main() {
 
     println()
     println("Cantidad total: ${carrito.calcularCantidadTotal()}")
-    println("Subtotal: S/ ${carrito.calcularSubtotal()}")
+    println(
+        "Subtotal: S/ ${
+            String.format(
+                "%.2f",
+                carrito.calcularSubtotal()
+            )
+        }"
+    )
 }
