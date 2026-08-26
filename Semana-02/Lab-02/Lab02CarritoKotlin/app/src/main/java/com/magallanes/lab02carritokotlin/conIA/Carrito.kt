@@ -15,6 +15,21 @@ abstract class ProductoBase(
     override fun toString(): String = String.format("%s (S/ %.2f)", nombre, precioBase)
 }
 
+class ProductoFisico(
+    nombre: String,
+    precioBase: Double
+) : ProductoBase(nombre, precioBase) {
+    override fun calcularImporte(): Double = precioBase
+}
+
+class ProductoDigital(
+    nombre: String,
+    precioBase: Double,
+    val descuentoLicencia: Double = 0.0
+) : ProductoBase(nombre, precioBase) {
+    override fun calcularImporte(): Double = precioBase - descuentoLicencia
+}
+
 fun main() {
     println("==")
     println("CARRITO DE COMPRAS - POO")
