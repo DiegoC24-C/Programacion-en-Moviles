@@ -213,6 +213,42 @@ class CarritoCompras(
             calcularSubtotal()
         )
     }
+
+
+    fun obtenerPorcentajeDescuento(): Double {
+
+        val subtotal = calcularSubtotal()
+
+        return when {
+            subtotal > 5000 -> 10.0
+            subtotal > 3000 -> 5.0
+            else -> 0.0
+        }
+    }
+
+
+    fun calcularIGV(): Double {
+
+        val subtotalConDescuento =
+            calcularSubtotal() - calcularDescuento()
+
+        return subtotalConDescuento * 0.18
+    }
+
+
+    fun calcularTotal(): Double {
+
+        val subtotal = calcularSubtotal()
+        val descuento = calcularDescuento()
+
+        val subtotalConDescuento =
+            subtotal - descuento
+
+        val igv =
+            subtotalConDescuento * 0.18
+
+        return subtotalConDescuento + igv
+    }
 }
 
 
@@ -289,10 +325,28 @@ fun main() {
     )
 
     println(
-        "Descuento: S/ ${
+        "Descuento (${carrito.obtenerPorcentajeDescuento().toInt()}%): S/ ${
             String.format(
                 "%.2f",
                 carrito.calcularDescuento()
+            )
+        }"
+    )
+
+    println(
+        "IGV (18%): S/ ${
+            String.format(
+                "%.2f",
+                carrito.calcularIGV()
+            )
+        }"
+    )
+
+    println(
+        "TOTAL A PAGAR: S/ ${
+            String.format(
+                "%.2f",
+                carrito.calcularTotal()
             )
         }"
     )
