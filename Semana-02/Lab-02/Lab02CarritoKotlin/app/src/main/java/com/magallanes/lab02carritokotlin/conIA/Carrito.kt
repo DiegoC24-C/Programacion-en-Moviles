@@ -30,6 +30,25 @@ class ProductoDigital(
     override fun calcularImporte(): Double = precioBase - descuentoLicencia
 }
 
+class Cliente(val nombre: String)
+
+class ItemCarrito(
+    val producto: ProductoBase,
+    cantidadInicial: Int
+) : Calculable {
+    var cantidad: Int = cantidadInicial
+        private set(value) {
+            require(value > 0) { "La cantidad debe ser mayor a 0" }
+            field = value
+        }
+
+    fun actualizarCantidad(nuevaCantidad: Int) {
+        this.cantidad = nuevaCantidad
+    }
+
+    override fun calcularImporte(): Double = producto.calcularImporte() * cantidad
+}
+
 fun main() {
     println("==")
     println("CARRITO DE COMPRAS - POO")
