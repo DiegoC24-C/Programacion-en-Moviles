@@ -84,6 +84,48 @@ class ProductoDigital(
 }
 
 
+// ============================================================
+// COMMIT 4 - ITEM DEL CARRITO
+// ============================================================
+
+class ItemCarrito(
+    private val producto: ProductoBase,
+    cantidadInicial: Int
+) : Calculable {
+
+    private var cantidad: Int = 0
+
+    init {
+        actualizarCantidad(cantidadInicial)
+    }
+
+    fun obtenerProducto(): ProductoBase {
+        return producto
+    }
+
+    fun obtenerCantidad(): Int {
+        return cantidad
+    }
+
+    fun actualizarCantidad(nuevaCantidad: Int) {
+
+        require(nuevaCantidad > 0) {
+            "La cantidad debe ser mayor que 0."
+        }
+
+        cantidad = nuevaCantidad
+    }
+
+    override fun calcularImporte(): Double {
+        return producto.calcularImporte() * cantidad
+    }
+
+    override fun toString(): String {
+        return "${producto.obtenerNombre()} x $cantidad"
+    }
+}
+
+
 fun main() {
 
     val cliente = Cliente(
@@ -101,16 +143,29 @@ fun main() {
         800.00
     )
 
+    // Probamos ItemCarrito
+    val itemLaptop = ItemCarrito(
+        laptop,
+        2
+    )
+
+    val itemCurso = ItemCarrito(
+        curso,
+        3
+    )
+
     println("CARRITO DE COMPRAS TIENDA TECSUP")
     println("Cliente: ${cliente.obtenerNombre()}")
     println("Documento: ${cliente.obtenerDocumento()}")
 
     println()
-    println("PRODUCTOS")
-    println(laptop)
-    println(curso)
+    println("ITEMS")
+
+    println(itemLaptop)
+    println("Importe: S/ ${itemLaptop.calcularImporte()}")
 
     println()
-    println("Importe laptop: S/ ${laptop.calcularImporte()}")
-    println("Importe curso: S/ ${curso.calcularImporte()}")
+
+    println(itemCurso)
+    println("Importe: S/ ${itemCurso.calcularImporte()}")
 }
