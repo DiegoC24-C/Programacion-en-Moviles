@@ -1,5 +1,4 @@
 package com.magallanes.lab02carritokotlin.sinIA
-
 data class Producto(
     val nombre: String,
     val precio: Double,
