@@ -84,10 +84,6 @@ class ProductoDigital(
 }
 
 
-// ============================================================
-// COMMIT 4 - ITEM DEL CARRITO
-// ============================================================
-
 class ItemCarrito(
     private val producto: ProductoBase,
     cantidadInicial: Int
@@ -126,6 +122,57 @@ class ItemCarrito(
 }
 
 
+// ============================================================
+// COMMIT 5 - CARRITO DE COMPRAS
+// ============================================================
+
+class CarritoCompras(
+    private val cliente: Cliente
+) {
+
+    private val items: MutableList<ItemCarrito> = mutableListOf()
+
+    fun agregarProducto(
+        producto: ProductoBase,
+        cantidad: Int
+    ) {
+
+        require(cantidad > 0) {
+            "La cantidad debe ser mayor que 0."
+        }
+
+        val nuevoItem = ItemCarrito(
+            producto,
+            cantidad
+        )
+
+        items.add(nuevoItem)
+    }
+
+    fun obtenerItems(): List<ItemCarrito> {
+        return items.toList()
+    }
+
+    fun obtenerCliente(): Cliente {
+        return cliente
+    }
+
+    fun calcularSubtotal(): Double {
+
+        return items.sumOf {
+            it.calcularImporte()
+        }
+    }
+
+    fun calcularCantidadTotal(): Int {
+
+        return items.sumOf {
+            it.obtenerCantidad()
+        }
+    }
+}
+
+
 fun main() {
 
     val cliente = Cliente(
@@ -143,29 +190,28 @@ fun main() {
         800.00
     )
 
-    // Probamos ItemCarrito
-    val itemLaptop = ItemCarrito(
-        laptop,
-        2
-    )
+    val carrito = CarritoCompras(cliente)
 
-    val itemCurso = ItemCarrito(
-        curso,
-        3
-    )
+    carrito.agregarProducto(laptop, 2)
+    carrito.agregarProducto(curso, 3)
 
     println("CARRITO DE COMPRAS TIENDA TECSUP")
-    println("Cliente: ${cliente.obtenerNombre()}")
-    println("Documento: ${cliente.obtenerDocumento()}")
+    println("Cliente: ${carrito.obtenerCliente().obtenerNombre()}")
+    println("Documento: ${carrito.obtenerCliente().obtenerDocumento()}")
 
     println()
-    println("ITEMS")
+    println("DETALLE DEL CARRITO")
 
-    println(itemLaptop)
-    println("Importe: S/ ${itemLaptop.calcularImporte()}")
+    carrito.obtenerItems().forEach { item ->
+
+        println(
+            "${item.obtenerProducto().obtenerNombre()} " +
+                    "x ${item.obtenerCantidad()} = " +
+                    "S/ ${item.calcularImporte()}"
+        )
+    }
 
     println()
-
-    println(itemCurso)
-    println("Importe: S/ ${itemCurso.calcularImporte()}")
+    println("Cantidad total: ${carrito.calcularCantidadTotal()}")
+    println("Subtotal: S/ ${carrito.calcularSubtotal()}")
 }
