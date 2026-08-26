@@ -172,12 +172,26 @@ class CarritoCompras(
             "La cantidad debe ser mayor que 0."
         }
 
-        val nuevoItem = ItemCarrito(
-            producto,
-            cantidad
-        )
+        val itemExistente = items.find {
+            it.obtenerProducto().obtenerNombre() ==
+                    producto.obtenerNombre()
+        }
 
-        items.add(nuevoItem)
+        if (itemExistente != null) {
+
+            itemExistente.actualizarCantidad(
+                itemExistente.obtenerCantidad() + cantidad
+            )
+
+        } else {
+
+            items.add(
+                ItemCarrito(
+                    producto,
+                    cantidad
+                )
+            )
+        }
     }
 
 
@@ -249,6 +263,16 @@ class CarritoCompras(
 
         return subtotalConDescuento + igv
     }
+
+
+    fun obtenerProductoMasCaro(): ProductoBase? {
+
+        return items
+            .maxByOrNull {
+                it.obtenerProducto().obtenerPrecioBase()
+            }
+            ?.obtenerProducto()
+    }
 }
 
 
@@ -270,6 +294,11 @@ fun main() {
         1200.00
     )
 
+    val teclado = ProductoFisico(
+        "Teclado Mecánico",
+        350.00
+    )
+
     val curso = ProductoDigital(
         "Curso Kotlin",
         800.00
@@ -285,69 +314,145 @@ fun main() {
     )
 
 
-    carrito.agregarProducto(laptop, 2)
-    carrito.agregarProducto(monitor)
-    carrito.agregarProducto(curso, 3)
+    // ========================================================
+    // PRODUCTOS AGREGADOS
+    // ========================================================
+
+    carrito.agregarProducto(laptop, 1)
+    carrito.agregarProducto(monitor, 2)
+    carrito.agregarProducto(teclado, 2)
+    carrito.agregarProducto(curso)
 
 
-    println("CARRITO DE COMPRAS TIENDA TECSUP")
-    println("Cliente: ${carrito.obtenerCliente().obtenerNombre()}")
-    println("Documento: ${carrito.obtenerCliente().obtenerDocumento()}")
+    // ========================================================
+    // DATOS PARA EL REPORTE
+    // ========================================================
 
-    println()
-    println("DETALLE DEL CARRITO")
+    val subtotal = carrito.calcularSubtotal()
+    val descuento = carrito.calcularDescuento()
+    val porcentajeDescuento = carrito.obtenerPorcentajeDescuento()
+    val igv = carrito.calcularIGV()
+    val total = carrito.calcularTotal()
+
+
+    // ========================================================
+    // REPORTE
+    // ========================================================
+
+    println(
+        String.format(
+            """
+            ================================================================
+                    CARRITO DE COMPRAS TIENDA TECSUP
+            ================================================================
+            
+            CLIENTE
+            Nombre    : %s
+            Documento : %s
+            
+            ------------------------------------------------
+            PRODUCTOS AGREGADOS
+            ------------------------------------------------
+            """.trimIndent(),
+            cliente.obtenerNombre(),
+            cliente.obtenerDocumento()
+        )
+    )
+
 
     carrito.obtenerItems().forEach { item ->
 
         println(
-            "${item.obtenerProducto().obtenerNombre()} " +
-                    "x ${item.obtenerCantidad()} = " +
-                    "S/ ${
-                        String.format(
-                            "%.2f",
-                            item.calcularImporte()
-                        )
-                    }"
+            String.format(
+                "✓ %s x%d",
+                item.obtenerProducto().obtenerNombre(),
+                item.obtenerCantidad()
+            )
         )
     }
 
 
     println()
-    println("Cantidad total: ${carrito.calcularCantidadTotal()}")
 
     println(
-        "Subtotal: S/ ${
+        String.format(
+            """
+            ------------------------------------------------
+            DETALLE DEL CARRITO
+            ------------------------------------------------
+            %-5s %-25s %10s %15s
+            ------------------------------------------------
+            """.trimIndent(),
+            "Ítem",
+            "Nombre",
+            "Cantidad",
+            "Importe"
+        )
+    )
+
+
+    carrito.obtenerItems().forEachIndexed { indice, item ->
+
+        println(
             String.format(
-                "%.2f",
-                carrito.calcularSubtotal()
+                "%-5d %-25s %10d %15.2f",
+                indice + 1,
+                item.obtenerProducto().obtenerNombre(),
+                item.obtenerCantidad(),
+                item.calcularImporte()
             )
-        }"
+        )
+    }
+
+
+    println(
+        String.format(
+            """
+            
+            ------------------------------------------------
+            RESUMEN FINANCIERO
+            ------------------------------------------------
+            Cantidad total de productos : %d
+            Subtotal                    : S/ %10.2f
+            Descuento (%2.0f%%)             : S/ %10.2f
+            IGV (18%%)                   : S/ %10.2f
+            ------------------------------------------------
+            TOTAL A PAGAR              : S/ %10.2f
+            ------------------------------------------------
+            """.trimIndent(),
+            carrito.calcularCantidadTotal(),
+            subtotal,
+            porcentajeDescuento,
+            descuento,
+            igv,
+            total
+        )
+    )
+
+
+    val productoMasCaro =
+        carrito.obtenerProductoMasCaro()
+
+
+    println(
+        String.format(
+            "Producto más caro            : %s - S/ %.2f",
+            productoMasCaro?.obtenerNombre() ?: "No disponible",
+            productoMasCaro?.obtenerPrecioBase() ?: 0.0
+        )
+    )
+
+
+    println()
+
+    println(
+        String.format(
+            "Gracias por su compra, %s. ¡Vuelva pronto a Tienda Tecsup!",
+            cliente.obtenerNombre()
+        )
     )
 
     println(
-        "Descuento (${carrito.obtenerPorcentajeDescuento().toInt()}%): S/ ${
-            String.format(
-                "%.2f",
-                carrito.calcularDescuento()
-            )
-        }"
-    )
-
-    println(
-        "IGV (18%): S/ ${
-            String.format(
-                "%.2f",
-                carrito.calcularIGV()
-            )
-        }"
-    )
-
-    println(
-        "TOTAL A PAGAR: S/ ${
-            String.format(
-                "%.2f",
-                carrito.calcularTotal()
-            )
-        }"
+        "================================================================"
     )
 }
