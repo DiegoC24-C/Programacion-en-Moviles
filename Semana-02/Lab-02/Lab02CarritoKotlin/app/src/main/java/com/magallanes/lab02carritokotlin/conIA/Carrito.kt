@@ -4,6 +4,10 @@ interface Calculable {
     fun calcularImporte(): Double
 }
 
+interface EstrategiaDescuento {
+    fun calcularDescuento(montoTotal: Double): Double
+}
+
 abstract class ProductoBase(
     val nombre: String,
     val precioBase: Double
@@ -28,6 +32,16 @@ class ProductoDigital(
     val descuentoLicencia: Double = 0.0
 ) : ProductoBase(nombre, precioBase) {
     override fun calcularImporte(): Double = precioBase - descuentoLicencia
+}
+
+class DescuentoMontoTecsup : EstrategiaDescuento {
+    override fun calcularDescuento(montoTotal: Double): Double {
+        return when {
+            montoTotal > 5000.0 -> montoTotal * 0.10
+            montoTotal > 3000.0 -> montoTotal * 0.05
+            else -> 0.0
+        }
+    }
 }
 
 class Cliente(val nombre: String)
