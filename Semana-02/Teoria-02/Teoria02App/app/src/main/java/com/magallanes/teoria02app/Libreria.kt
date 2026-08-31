@@ -50,4 +50,24 @@ fun main() {
 
     println("ESTADO          : Devuelto con $diasAtraso días de atraso")
     println("==================================================")
+
+    println("%-5s %-10s %-12s %-10s".format("Día", "Fecha", "Multa Día", "Acumulado"))
+    println("--------------------------------------------------")
+
+    var acumulado = 0.0
+    val formatoDiaMes = DateTimeFormatter.ofPattern("dd/MM")
+
+    for (i in 1..diasAtraso) {
+        val fechaDiaMulta = fechaDevolucionPactada.plusDays(i)
+        acumulado += tarifaDiaria
+
+        println(
+            "%-5d %-10s S/ %-9.2f S/ %-8.2f".format(
+                i,
+                fechaDiaMulta.format(formatoDiaMes),
+                tarifaDiaria,
+                acumulado
+            )
+        )
+    }
 }
