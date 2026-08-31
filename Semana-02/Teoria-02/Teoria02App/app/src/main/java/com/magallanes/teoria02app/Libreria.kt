@@ -1,9 +1,13 @@
 package com.magallanes.teoria02app
 
 import java.util.Scanner
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 fun main() {
     val scanner = Scanner(System.`in`)
+    val formatoEntrada = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
     println("--- SISTEMA DE CONTROL DE MULTAS DE BIBLIOTECA ---")
 
     print("Ingrese el título del libro: ")
@@ -18,4 +22,13 @@ fun main() {
 
     val tipoUsuario = if (opcion == 1) "Docente" else "Alumno"
     val tarifaDiaria = if (opcion == 1) 3.00 else 1.50
+
+    print("Ingrese Fecha de Préstamo (dd/MM/yyyy): ")
+    val fechaPrestamo = LocalDate.parse(scanner.nextLine(), formatoEntrada)
+
+    print("Ingrese Fecha Pactada de Devolución (dd/MM/yyyy): ")
+    val fechaDevolucionPactada = LocalDate.parse(scanner.nextLine(), formatoEntrada)
+
+    print("Ingrese Fecha Real de Entrega (dd/MM/yyyy): ")
+    val fechaEntregaReal = LocalDate.parse(scanner.nextLine(), formatoEntrada)
 }
