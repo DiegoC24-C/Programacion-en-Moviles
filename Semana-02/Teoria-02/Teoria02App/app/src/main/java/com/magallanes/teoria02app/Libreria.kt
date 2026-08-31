@@ -3,6 +3,7 @@ package com.magallanes.teoria02app
 import java.util.Scanner
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 fun main() {
     val scanner = Scanner(System.`in`)
@@ -31,4 +32,22 @@ fun main() {
 
     print("Ingrese Fecha Real de Entrega (dd/MM/yyyy): ")
     val fechaEntregaReal = LocalDate.parse(scanner.nextLine(), formatoEntrada)
+
+    val diasAtraso = ChronoUnit.DAYS.between(fechaDevolucionPactada, fechaEntregaReal)
+
+    println("\n==================================================")
+    println("LIBRO           : $tituloLibro")
+    println("TIPO USUARIO    : $tipoUsuario (S/ %.2f diario)".format(tarifaDiaria))
+    println("FECHA PRÉSTAMO  : ${fechaPrestamo.format(formatoEntrada)}")
+    println("FECHA DEVOLUCIÓN: ${fechaDevolucionPactada.format(formatoEntrada)}")
+    println("FECHA ENTREGA   : ${fechaEntregaReal.format(formatoEntrada)}")
+
+    if (diasAtraso <= 0) {
+        println("ESTADO          : Devuelto a tiempo (Sin multa)")
+        println("==================================================")
+        return
+    }
+
+    println("ESTADO          : Devuelto con $diasAtraso días de atraso")
+    println("==================================================")
 }
