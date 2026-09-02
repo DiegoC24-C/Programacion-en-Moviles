@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.magllanes.lab03registroproducto.ui.theme.Lab03RegistroProductoTheme
 
@@ -25,13 +26,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PantallaRegistro(modifier: Modifier = Modifier) {
-    // 1. Definición de variables de ESTADO
     var nombre by remember { mutableStateOf("") }
     var precio by remember { mutableStateOf("") }
     var cantidad by remember { mutableStateOf("") }
     var mostrarResumen by remember { mutableStateOf(false) }
 
-    // 2. Estructura visual de la pantalla
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -49,7 +48,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Campo 1: Nombre del producto
+        // Campos de ingreso
         OutlinedTextField(
             value = nombre,
             onValueChange = { nombre = it },
@@ -59,7 +58,6 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Fila con Campos 2 y 3: Precio y Cantidad compartiendo ancho con weight(1f)
         Row(modifier = Modifier.fillMaxWidth()) {
             OutlinedTextField(
                 value = precio,
@@ -74,6 +72,46 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 label = { Text("Cantidad") },
                 modifier = Modifier.weight(1f)
             )
+        }
+
+        // Botón y Card (Parte 4)
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = { mostrarResumen = true },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("AGREGAR PRODUCTO")
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        if (mostrarResumen) {
+            val precioNum = precio.toDoubleOrNull() ?: 0.0
+            val cantidadNum = cantidad.toIntOrNull() ?: 0
+            val importe = precioNum * cantidadNum
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = nombre,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    Text(text = "Precio: S/ " + String.format("%.2f", precioNum))
+                    Text(text = "Cantidad: $cantidadNum")
+                    Text(
+                        text = "Importe total: S/ " + String.format("%.2f", importe),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
         }
     }
 }
