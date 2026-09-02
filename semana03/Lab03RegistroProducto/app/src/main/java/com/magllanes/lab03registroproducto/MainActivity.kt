@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.magllanes.lab03registroproducto.ui.theme.Lab03RegistroProductoTheme
@@ -74,7 +75,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
             )
         }
 
-        // Botón y Card (Parte 4)
+        // Botón
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
@@ -86,6 +87,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Card y Mensaje de confirmación (Parte 5)
         if (mostrarResumen) {
             val precioNum = precio.toDoubleOrNull() ?: 0.0
             val cantidadNum = cantidad.toIntOrNull() ?: 0
@@ -112,6 +114,14 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "✓ Producto registrado correctamente",
+                color = Color(0xFF2E7D32),
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }
