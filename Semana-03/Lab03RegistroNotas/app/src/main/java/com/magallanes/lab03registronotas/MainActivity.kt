@@ -1,5 +1,4 @@
-package com.magllanes.lab03registronotas
-
+package com.magallanes.lab03registronotas
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
