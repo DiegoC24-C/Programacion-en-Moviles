@@ -20,3 +20,7 @@ Si se declaran las variables sin `remember`, cada vez que el usuario escribe un 
 | Prompt que usé | Qué generó la IA | Qué corregí o ajusté |
 | :--- | :--- | :--- |
 | "Modifica PantallaRegistro para agregar validación de campos vacíos y un botón LIMPIAR con Material 3." | Generó las variables de estado, la validación de campos y el botón LIMPIAR. | Agregué `keyboardOptions` con `KeyboardType.Number` en Precio y Cantidad para forzar el despliegue del teclado numérico. |
+### Capturas del sistema funcionando:
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
