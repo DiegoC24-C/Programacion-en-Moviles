@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -69,7 +67,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 onValueChange = { precio = it },
                 label = { Text("Precio (S/)") },
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), // CAMBIO A MANO 1
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(16.dp))
@@ -78,7 +76,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 onValueChange = { cantidad = it },
                 label = { Text("Cantidad") },
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), // CAMBIO A MANO 2
                 modifier = Modifier.weight(1f)
             )
         }
@@ -91,17 +89,8 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    val precioNum = precio.toDoubleOrNull()
-                    val cantidadNum = cantidad.toIntOrNull()
-
                     if (nombre.isBlank() || precio.isBlank() || cantidad.isBlank()) {
-                        mensajeError = "⚠️ Todos los campos son obligatorios."
-                        mostrarResumen = false
-                    } else if (precioNum == null || precioNum <= 0) {
-                        mensajeError = "⚠️ Ingrese un precio válido mayor a 0."
-                        mostrarResumen = false
-                    } else if (cantidadNum == null || cantidadNum <= 0) {
-                        mensajeError = "⚠️ Ingrese una cantidad entera mayor a 0."
+                        mensajeError = "Todos los campos son obligatorios."
                         mostrarResumen = false
                     } else {
                         mensajeError = ""
@@ -121,9 +110,6 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                     mostrarResumen = false
                     mensajeError = ""
                 },
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = MaterialTheme.colorScheme.error
-                ),
                 modifier = Modifier.weight(1f)
             ) {
                 Text("LIMPIAR")
