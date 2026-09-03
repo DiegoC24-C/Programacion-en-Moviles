@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4789054a-3088-4407-bff1-56802e177753" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/.artifacts/586cab99-0b80-4282-9a2c-23dc63b16659/implementation_plan.artifact.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/.idea/planningMode.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/androidTest/java/com/magallanes/teoria02app/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/java/com/magallanes/teoria02app/Libreria.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/java/com/magallanes/teoria02app/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/java/com/magallanes/teoria02app/ui/theme/Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/java/com/magallanes/teoria02app/ui/theme/Theme.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/java/com/magallanes/teoria02app/ui/theme/Type.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/keepRules/rules.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/app/src/test/java/com/magallanes/teoria02app/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradle/libs.versions.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teoria-02/Teoria02App/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab-02/Lab02CarritoKotlin/gradle/libs.versions.toml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "DiegoMagallanes11"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/DiegoMagallanes11/Programacion-en-Moviles.git",
+    "accountId": "9562c7a4-45ca-4311-bf79-1c8f284fceea"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3IVaL4ciXvNw1PpkEoeETT8yW6u" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "rama-teoria-semana-02",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Magal/Programacion-en-Moviles/Semana-02"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4789054a-3088-4407-bff1-56802e177753" name="Changes" comment="" />
+      <created>1787852131195</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1787852131195</updated>
+    </task>
+    <servers />
+  </component>
+</project>
