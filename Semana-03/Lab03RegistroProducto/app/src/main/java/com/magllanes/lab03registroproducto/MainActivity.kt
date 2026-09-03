@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.magllanes.lab03registroproducto.ui.theme.Lab03RegistroProductoTheme
 
@@ -53,6 +57,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
             value = nombre,
             onValueChange = { nombre = it },
             label = { Text("Nombre del producto") },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -63,6 +68,8 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 value = precio,
                 onValueChange = { precio = it },
                 label = { Text("Precio (S/)") },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(16.dp))
@@ -70,6 +77,8 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 value = cantidad,
                 onValueChange = { cantidad = it },
                 label = { Text("Cantidad") },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.weight(1f)
             )
         }
@@ -86,13 +95,13 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                     val cantidadNum = cantidad.toIntOrNull()
 
                     if (nombre.isBlank() || precio.isBlank() || cantidad.isBlank()) {
-                        mensajeError = "Por favor, completa todos los campos."
+                        mensajeError = "⚠️ Todos los campos son obligatorios."
                         mostrarResumen = false
                     } else if (precioNum == null || precioNum <= 0) {
-                        mensajeError = "Ingresa un precio válido mayor a 0."
+                        mensajeError = "⚠️ Ingrese un precio válido mayor a 0."
                         mostrarResumen = false
                     } else if (cantidadNum == null || cantidadNum <= 0) {
-                        mensajeError = "Ingresa una cantidad válida mayor a 0."
+                        mensajeError = "⚠️ Ingrese una cantidad entera mayor a 0."
                         mostrarResumen = false
                     } else {
                         mensajeError = ""
@@ -112,6 +121,9 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                     mostrarResumen = false
                     mensajeError = ""
                 },
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = MaterialTheme.colorScheme.error
+                ),
                 modifier = Modifier.weight(1f)
             ) {
                 Text("LIMPIAR")
