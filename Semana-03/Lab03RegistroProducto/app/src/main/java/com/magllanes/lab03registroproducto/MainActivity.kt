@@ -31,13 +31,13 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
     var precio by remember { mutableStateOf("") }
     var cantidad by remember { mutableStateOf("") }
     var mostrarResumen by remember { mutableStateOf(false) }
+    var mensajeError by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Encabezado
         Text(
             text = "Nuevo producto",
             style = MaterialTheme.typography.headlineSmall
@@ -49,7 +49,6 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Campos de ingreso
         OutlinedTextField(
             value = nombre,
             onValueChange = { nombre = it },
@@ -75,19 +74,61 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
             )
         }
 
-        // Botón
         Spacer(modifier = Modifier.height(24.dp))
 
-        Button(
-            onClick = { mostrarResumen = true },
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text("AGREGAR PRODUCTO")
+            Button(
+                onClick = {
+                    val precioNum = precio.toDoubleOrNull()
+                    val cantidadNum = cantidad.toIntOrNull()
+
+                    if (nombre.isBlank() || precio.isBlank() || cantidad.isBlank()) {
+                        mensajeError = "Por favor, completa todos los campos."
+                        mostrarResumen = false
+                    } else if (precioNum == null || precioNum <= 0) {
+                        mensajeError = "Ingresa un precio válido mayor a 0."
+                        mostrarResumen = false
+                    } else if (cantidadNum == null || cantidadNum <= 0) {
+                        mensajeError = "Ingresa una cantidad válida mayor a 0."
+                        mostrarResumen = false
+                    } else {
+                        mensajeError = ""
+                        mostrarResumen = true
+                    }
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("AGREGAR")
+            }
+
+            OutlinedButton(
+                onClick = {
+                    nombre = ""
+                    precio = ""
+                    cantidad = ""
+                    mostrarResumen = false
+                    mensajeError = ""
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("LIMPIAR")
+            }
         }
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Card y Mensaje de confirmación (Parte 5)
+        if (mensajeError.isNotEmpty()) {
+            Text(
+                text = mensajeError,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
         if (mostrarResumen) {
             val precioNum = precio.toDoubleOrNull() ?: 0.0
             val cantidadNum = cantidad.toIntOrNull() ?: 0
