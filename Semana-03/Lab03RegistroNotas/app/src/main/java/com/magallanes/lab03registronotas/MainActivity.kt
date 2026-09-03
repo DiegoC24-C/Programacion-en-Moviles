@@ -184,7 +184,7 @@ fun PantallaRegistroNotas() {
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
-
+                //logica del calculo
                 if (promedioPonderadoCalculado == null || promedioFinalCalculado == null) {
                     Text(
                         text = "Asigna las notas y confirma para calcular",
